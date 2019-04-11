@@ -9,7 +9,7 @@
 </head>
 <body>
     <center>
-        <h1>File Upload to Database Demo</h1>
+        <h1>File Upload to Database</h1>
         <form method="post" action="uploadServlet" enctype="multipart/form-data">
             <table border="0">
                 <tr>

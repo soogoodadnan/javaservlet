@@ -2,11 +2,11 @@ package com.journaldev.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
+import com.journaldev.util.Images;
 import com.journaldev.util.User;
 
 @WebServlet(name = "Login", urlPatterns = { "/Login" })
@@ -45,7 +46,9 @@ public class LoginServlet extends HttpServlet {
 		
 		Connection con = (Connection) getServletContext().getAttribute("DBConnection");
 		PreparedStatement ps = null;
+
 		ResultSet rs = null;
+
 		try {
 			ps = con.prepareStatement("select id, name, email,country from Users where email=? and password=? limit 1");
 			ps.setString(1, email);
@@ -59,6 +62,9 @@ public class LoginServlet extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("User", user);
 				response.sendRedirect("home.jsp");;
+				
+				
+				
 			}else{
 				RequestDispatcher rd = getServletContext().getRequestDispatcher("/login.html");
 				PrintWriter out= response.getWriter();

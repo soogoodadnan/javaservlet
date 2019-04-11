@@ -129,6 +129,24 @@ body:before {
   font-weight: 600;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
+
+.lf--submitTWO {
+  display: block;
+  padding: 1em;
+  width: 100%;
+  margin-top: 1em;
+  background: -webkit-linear-gradient(left, #35c3c1, #00d6b7);
+  background: linear-gradient(to right, #35c3c1, #00d6b7);
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  font-size: .75em;
+  font-weight: 600;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+
 .lf--submit:focus {
   outline: none;
   -webkit-transition: -webkit-transform .15s ease;
@@ -187,7 +205,7 @@ body:before {
   <input class='lf--submit' type='submit' value='Upload Subject' formaction="Upload.jsp"  name='UploadSubject'>
  </form>
     <form action="Logout" method="post">
-  <input class='lf--submit' type='submit' value='Logout'   name='Logout'>
+  <input class='lf--submitTWO' type='submit' value='Logout'   name='Logout'>
   </form>
 </div>
 

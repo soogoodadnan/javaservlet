@@ -15,6 +15,7 @@
 <br>
 <form action="Logout" method="post">
 <input type="submit" value="Logout" >
+<a class='lf--forgot' href="Upload.jsp">Upload Subject</a>
 </form>
 </body>
 </html>

@@ -198,9 +198,6 @@ body:before {
   <strong>Your Email</strong>: <%=user.getEmail() %><br>
   </div>
   <div class="flex-row">
-
-<img src='<%=path%>'>
-
 <strong>Your Country</strong>: <%=user.getCountry() %><br>
   </div>
   <form >

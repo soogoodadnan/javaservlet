@@ -7,6 +7,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -61,8 +64,8 @@ public class LoginServlet extends HttpServlet {
 				HttpSession session = request.getSession();
 				
 //images data
-				 byte[] imageData = getImageInTable(con);
-				 System.out.println("Download file here"	+imageData);
+				 
+				 System.out.println("Download file here ## "	+getImageInTable(con).size());
 							
 				session.setAttribute("User", user);
 				response.sendRedirect("home.jsp");;
@@ -91,15 +94,18 @@ public class LoginServlet extends HttpServlet {
 		}
 		}
 	}
-	  private byte[] getImageInTable(Connection conn) throws SQLException {
+	  private  List<Images> getImageInTable(Connection conn) throws SQLException {
 		  System.out.println("Download file here start"	);
-	      String sql = "select id, name, photo from subjects limit 1";
+	      String sql = "select id, name, photo from subjects";
 	      PreparedStatement pstm = conn.prepareStatement(sql);
+	      List<Images> list = new ArrayList();		
 	      ResultSet rs = pstm.executeQuery();
-	      if (rs.next()) {
+	      while (rs.next()) {
+	    	  Images img = new Images();
 	          byte[] imageData = rs.getBytes("photo");
-	          return imageData;
+	          img.setPhoto(imageData);
+	          list.add(img);
 	      }
-	      return null;
+	      return list;
 	  }
 }

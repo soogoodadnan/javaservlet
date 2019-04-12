@@ -9,11 +9,11 @@ public class Images implements Serializable {
 	 */
 	private static final long serialVersionUID = 8187167802827722344L;
 	private String name;
-	private  byte[]  photo;
+	private  String  photo;
 	private int id;
 	
 	public Images() {}
-	public Images(String nm, byte[] photo, int i){
+	public Images(String nm, String photo, int i){
 		this.name=nm;
 		this.id=i;
 		this.photo=photo;
@@ -24,7 +24,7 @@ public class Images implements Serializable {
 	}
 
 
-	public void setPhoto(byte[] photo) {
+	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
 
@@ -38,7 +38,7 @@ public class Images implements Serializable {
 		return name;
 	}
 
-	public  byte[]  getPhoto() {
+	public String  getPhoto() {
 		return photo;
 	}
 

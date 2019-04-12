@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -39,9 +39,7 @@ public class LoginServlet extends HttpServlet {
 		if(password == null || password.equals("")){
 			errorMsg = "Password can't be null or empty";
 		}
-		
-		
-		
+		 
 		if(errorMsg != null){
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/login.html");
 			PrintWriter out= response.getWriter();
@@ -109,7 +107,11 @@ public class LoginServlet extends HttpServlet {
 	      while (rs.next()) {
 	    	  Images img = new Images();
 	          byte[] imageData = rs.getBytes("photo");
-	          img.setPhoto(imageData);
+	          
+	          String encode = Base64.getEncoder().encodeToString(imageData);
+	          img.setPhoto(encode);
+	     	 System.out.println("Download file Link >>>>> "	+encode);
+	          
 	          img.setName(rs.getString("name"));
 	          img.setId(rs.getInt("id"));
 

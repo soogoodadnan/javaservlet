@@ -225,31 +225,31 @@ body:before {
   
    </div>
    
-<div  class="flex-row_images">
-       
+<div  class=flex-row_images>
+           <form >
   <%
   for(int i = 0 ; i<list.size() ; i++ ){
 	  %>
   
-            <form >
+        
         <img 
-           src=" <%=
-           list.get(i).getPhoto()
-           %>"
+           src=" data:image/jpeg;base64,${list.get(i).getPhoto()}"
            
             height="160" width="160" />
             
           
             <a>
             
-             <%=list.get(i).getName() %>
+             <%=
+             list.get(i).getName()
+             %>
              
              </a>
-    </form>
+    
     <%  
     } 
     %>
-      
+      </form>
             </div>
 
  

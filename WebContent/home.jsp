@@ -1,4 +1,10 @@
-<%@page import="com.journaldev.util.User"%>
+<%@page import="com.journaldev.util.User"
+import="java.util.ArrayList"
+import="java.util.List"
+import="com.journaldev.util.Images"
+
+import="java.util.Arrays"
+%>
 <%@ page language="java" contentType="text/html; charset=US-ASCII"
     pageEncoding="US-ASCII"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -80,6 +86,14 @@ body:before {
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 1em;
+}
+
+.flex-row_images {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 2em;
+   margin-bottom: 2em;
 }
 
 .lf--label {
@@ -190,7 +204,9 @@ body:before {
 </head>
 
 <body>
-<%User user = (User) session.getAttribute("User"); %>
+<%User user = (User) session.getAttribute("User"); 
+ List<Images> list= (List) session.getAttribute("Images"); %>
+
 <h1 class="flex-row">Hi <%=user.getName() %></h1>
 
   <div class='login-form' >
@@ -206,9 +222,38 @@ body:before {
     <form action="Logout"  method="post">
   <input class='lf--submitTWO' type='submit' value='Logout'   name='Logout'>
   </form>
-</div>
+  
+   </div>
+   
+<div  class="flex-row_images">
+       
+  <%
+  for(int i = 0 ; i<list.size() ; i++ ){
+	  %>
+  
+            <form >
+        <img 
+           src=" <%=
+           list.get(i).getPhoto()
+           %>"
+           
+            height="160" width="160" />
+            
+          
+            <a>
+            
+             <%=list.get(i).getName() %>
+             
+             </a>
+    </form>
+    <%  
+    } 
+    %>
+      
+            </div>
 
-
+ 
+  
   </body>
 </html>
 

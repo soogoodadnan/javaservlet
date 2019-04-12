@@ -2,12 +2,12 @@ package com.journaldev.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -40,6 +40,8 @@ public class LoginServlet extends HttpServlet {
 			errorMsg = "Password can't be null or empty";
 		}
 		
+		
+		
 		if(errorMsg != null){
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/login.html");
 			PrintWriter out= response.getWriter();
@@ -64,10 +66,14 @@ public class LoginServlet extends HttpServlet {
 				HttpSession session = request.getSession();
 				
 //images data
+				 List<Images> list =getImageInTable(con);
+				 System.out.println("Download file here ## "	+list.size());
 				 
-				 System.out.println("Download file here ## "	+getImageInTable(con).size());
+						 
 							
 				session.setAttribute("User", user);
+				session.setAttribute("Images", list);
+
 				response.sendRedirect("home.jsp");;
 				
 				
@@ -111,5 +117,10 @@ public class LoginServlet extends HttpServlet {
 	          list.add(img);
 	      }
 	      return list;
+	      
+	      
+	      
+	      
+	      
 	  }
 }

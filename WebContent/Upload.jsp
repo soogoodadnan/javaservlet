@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>File Upload to Database Demo</title>
+<title>File Upload to Database</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 
@@ -80,6 +80,13 @@ body:before {
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 1em;
+}
+
+.flex-row_two {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 1em;
 }
 
 .lf--label {
@@ -187,20 +194,25 @@ body:before {
     </style>
 </head>
 <body>
+     <h1 class="flex-row"> File Upload to Database</h1>
     <div class='login-form'>
-        <h1>File Upload to Database</h1>
+   
         <form method="post" action="uploadServlet" enctype="multipart/form-data">
             <table border="0">
                 <tr>
-                    <td>Subject Name: </td>
+                    <td >Subject Name: </td>
+                      </tr>
+                        <tr>
                     <td><input class='lf--submitTWO' type="text" name="name" size="50"/></td>
                 </tr>
-               <tr>
-                    <td>Portrait Photo: </td>
+               <tr class="flex-row_two">
+                    <td >Portrait Photo: </td>
+                          </tr>
+                        <tr>
                     <td><input class='lf--submitTWO' type="file" name="photo" size="50"/></td>
                 </tr>
-                <tr>
-                    <td colspan="2">
+                <tr class="flex-row_two">
+                    <td  >
                         <input class='lf--submitTWO' type="submit" value="Upload">
                     </td>
                 </tr>

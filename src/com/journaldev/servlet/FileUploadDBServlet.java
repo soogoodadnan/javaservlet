@@ -2,10 +2,12 @@ package com.journaldev.servlet;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
- 
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -28,12 +30,29 @@ public class FileUploadDBServlet extends HttpServlet {
         // gets values of text fields
     	  String message = "";
         String name = request.getParameter("name");
-        
-        InputStream inputStream = null; // input stream of the upload file
-         
         // obtains the upload file part in this multipart request
         Part filePart = request.getPart("photo");
-        if (filePart != null) {
+        
+    	String errorMsg = null;
+		if(name == null || name.equals("")){
+			errorMsg ="Name can't be null or empty";
+		}
+		if(filePart.getSize()  == 0 ){
+			errorMsg = "Please select file from computer";
+			System.out.println("Null File");
+		}
+        
+		
+
+		if(errorMsg != null){
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/Upload.jsp");
+			PrintWriter out= response.getWriter();
+			out.println("<font color=red>"+errorMsg+"</font>");
+			rd.include(request, response);
+    
+	}else{
+        InputStream inputStream = null; // input stream of the upload file
+        
             // prints out some information for debugging
             System.out.println(filePart.getName());
             System.out.println(filePart.getSize());
@@ -41,7 +60,7 @@ public class FileUploadDBServlet extends HttpServlet {
              
             // obtains input stream of the upload file
             inputStream = filePart.getInputStream();
-        }
+     
 		Connection con = (Connection) getServletContext().getAttribute("DBConnection");
 		PreparedStatement ps = null;
          
@@ -63,6 +82,7 @@ public class FileUploadDBServlet extends HttpServlet {
             if (row > 0) {
                 message = "File uploaded and saved into database";
             }
+            
         } catch (SQLException ex) {
             message = "ERROR: " + ex.getMessage();
             ex.printStackTrace();
@@ -82,4 +102,5 @@ public class FileUploadDBServlet extends HttpServlet {
             getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
         }
     }
+}
 }

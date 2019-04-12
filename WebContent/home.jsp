@@ -191,7 +191,7 @@ body:before {
 
 <body>
 <%User user = (User) session.getAttribute("User"); %>
-<h1>Hi <%=user.getName() %></h1>
+<h1 class="flex-row">Hi <%=user.getName() %></h1>
 
   <div class='login-form' >
   <div class="flex-row">
@@ -199,12 +199,14 @@ body:before {
   </div>
   <div class="flex-row">
 
+<img src='<%=path%>'>
+
 <strong>Your Country</strong>: <%=user.getCountry() %><br>
   </div>
   <form >
   <input class='lf--submit' type='submit' value='Upload Subject' formaction="Upload.jsp"  name='UploadSubject'>
  </form>
-    <form action="Logout" method="post">
+    <form action="Logout"  method="post">
   <input class='lf--submitTWO' type='submit' value='Logout'   name='Logout'>
   </form>
 </div>

@@ -54,12 +54,16 @@ public class LoginServlet extends HttpServlet {
 			ps.setString(1, email);
 			ps.setString(2, password);
 			rs = ps.executeQuery();
+			if(rs != null && rs.next()){
 			
-			if(rs != null){
-				rs.next();
 				User user = new User(rs.getString("name"), rs.getString("email"), rs.getString("country"), rs.getInt("id"));
 				logger.info("User found with details="+user);
 				HttpSession session = request.getSession();
+				
+//images data
+				 byte[] imageData = getImageInTable(con);
+				 System.out.println("Download file here"	+imageData);
+							
 				session.setAttribute("User", user);
 				response.sendRedirect("home.jsp");;
 				
@@ -87,5 +91,15 @@ public class LoginServlet extends HttpServlet {
 		}
 		}
 	}
-
+	  private byte[] getImageInTable(Connection conn) throws SQLException {
+		  System.out.println("Download file here start"	);
+	      String sql = "select id, name, photo from subjects limit 1";
+	      PreparedStatement pstm = conn.prepareStatement(sql);
+	      ResultSet rs = pstm.executeQuery();
+	      if (rs.next()) {
+	          byte[] imageData = rs.getBytes("photo");
+	          return imageData;
+	      }
+	      return null;
+	  }
 }

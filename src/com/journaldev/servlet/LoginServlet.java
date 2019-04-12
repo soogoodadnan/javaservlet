@@ -104,6 +104,10 @@ public class LoginServlet extends HttpServlet {
 	    	  Images img = new Images();
 	          byte[] imageData = rs.getBytes("photo");
 	          img.setPhoto(imageData);
+	          img.setName(rs.getString("name"));
+	          img.setId(rs.getInt("id"));
+
+	          
 	          list.add(img);
 	      }
 	      return list;

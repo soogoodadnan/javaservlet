@@ -230,10 +230,9 @@ body:before {
   <%
   for(int i = 0 ; i<list.size() ; i++ ){
 	  %>
-  
-        
+
         <img 
-           src=" data:image/jpeg;base64,${list.get(i).getPhoto()}"
+           src=" data:image/jpeg;base64,<%= list.get(i).getPhoto()%>"
            
             height="160" width="160" />
             

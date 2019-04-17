@@ -1,10 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@page
+  import="com.journaldev.util.Images"
+  
+  %>
+<%@ page language="java" contentType="text/html; charset=US-ASCII"
+    pageEncoding="US-ASCII"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
 <style>
 body {
 font-family: Verdana, arial;
@@ -74,10 +80,12 @@ img
 </head>
 <body>
 
+<%Images displayImage = (Images) session.getAttribute("ResultImages");
+%>
 
 <div class="outer">
     <div class="inner">
-        <img src="http://1.bp.blogspot.com/_74so2YIdYpM/TEd09Hqrm6I/AAAAAAAAApY/rwGCm5_Tawg/s320/tall+copy.jpg"  width="200" height="300" alt="Subject Name" />
+        <img src="data:image/jpeg;base64,${item.getPhoto()}"  width="200" height="300" alt="Subject Name" />
     </div>
 </div>
 
@@ -101,8 +109,7 @@ img
   <c:forEach items="${Images}" var="item">
     <tr>
       <td><c:out value="${item.getName()}" /></td>
-      <td><Image src="${item.getPhoto()}" />
-            <td><a href="${item.getId()}">Details</a></td>
+ 
     </tr>
   </c:forEach>
 </table>

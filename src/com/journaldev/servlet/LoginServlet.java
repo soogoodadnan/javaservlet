@@ -74,8 +74,6 @@ public class LoginServlet extends HttpServlet {
 
 				response.sendRedirect("home.jsp");;
 				
-				
-				
 			}else{
 				RequestDispatcher rd = getServletContext().getRequestDispatcher("/login.html");
 				PrintWriter out= response.getWriter();
@@ -117,12 +115,11 @@ public class LoginServlet extends HttpServlet {
 
 	          
 	          list.add(img);
+	          
 	      }
+	      rs.close();
+          pstm.close();
 	      return list;
-	      
-	      
-	      
-	      
 	      
 	  }
 }

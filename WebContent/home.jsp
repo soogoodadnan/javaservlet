@@ -8,7 +8,6 @@ import="java.util.Arrays"
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=US-ASCII"
     pageEncoding="US-ASCII"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
@@ -257,7 +256,7 @@ max-height: 100vh;
 <strong>Your Country</strong>: <%=user.getCountry() %><br>
   </div>
   <form >
-  <input class='lf--submit' type='submit' value='Upload Subject' formaction="Result.jsp"  name='UploadSubject'>
+  <input class='lf--submit' type='submit' value='Upload Subject' formaction="Upload.jsp"  name='UploadSubject'>
  </form>
     <form action="Logout"  method="post">
   <input class='lf--submitTWO' type='submit' value='Logout'   name='Logout'>
@@ -268,15 +267,25 @@ max-height: 100vh;
   <div class='col' >
     <table   class='subject-form' >
   <c:forEach items="${Images}" var="item">
-  <div  >
+
     <tr>
       <td><c:out value="${item.getName()}" /></td>
         <td > <img style="padding: 5px;"
           src=" data:image/jpeg;base64,${item.getPhoto()}"
-            height="100" width="100" /></td>   
-           <td >  <a href="Result/${item.getId()}">Details</a></td>
+            height="160" width="260" /></td>   
+           
+           <td >
+             <form action="Result"  method="post">
+    <input type="hidden" name="imageButton"  value='${item.getId()}'>
+  
+               
+    <input class='lf--submitTWO'  name='Details' type='submit' value='Details'>
+    </form>
+    
+    </td>
+
     </tr>
-    </div>
+    
   </c:forEach>
 </table>
     </div>

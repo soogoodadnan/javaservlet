@@ -5,6 +5,7 @@ import="com.journaldev.util.Images"
 
 import="java.util.Arrays"
 %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=US-ASCII"
     pageEncoding="US-ASCII"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -64,6 +65,13 @@ body:before {
   position: relative;
   background: rgba(0, 0, 0, 0.15);
 }
+
+.subject-form {
+  width: 100%;
+  padding: 2em;
+  position: relative;
+  background: rgba(0, 0, 0, 0);
+}
 .login-form:before {
   content: '';
   position: absolute;
@@ -86,14 +94,16 @@ body:before {
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 1em;
+  
+    margin-top: 50px;
 }
 
 .flex-row_images {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-top: 2em;
-   margin-bottom: 2em;
+  
+    margin-top: 50px;
 }
 
 .lf--label {
@@ -198,6 +208,32 @@ body:before {
   color: #8f8f8f;
 }
 
+
+
+
+
+.row {
+  display: flex; /* equal height of the children */
+}
+
+.col {
+  flex: 1; /* additionally, equal width */
+  
+  padding: 1em;
+ overflow: auto;
+max-height: 100vh;
+  padding: 1em;
+  border: solid;
+}
+
+.colTop {
+  flex: 1; /* additionally, equal width */
+  
+  padding: 1em;
+    padding: 1em;
+  border: solid;
+}
+
     </style>
 
   
@@ -209,7 +245,11 @@ body:before {
 
 <h1 class="flex-row">Hi <%=user.getName() %></h1>
 
-  <div class='login-form' >
+  <div class='row' >
+  
+  <div class='colTop' >
+  
+  <div  class='login-form' >
   <div class="flex-row">
   <strong>Your Email</strong>: <%=user.getEmail() %><br>
   </div>
@@ -217,39 +257,31 @@ body:before {
 <strong>Your Country</strong>: <%=user.getCountry() %><br>
   </div>
   <form >
-  <input class='lf--submit' type='submit' value='Upload Subject' formaction="Upload.jsp"  name='UploadSubject'>
+  <input class='lf--submit' type='submit' value='Upload Subject' formaction="Result.jsp"  name='UploadSubject'>
  </form>
     <form action="Logout"  method="post">
   <input class='lf--submitTWO' type='submit' value='Logout'   name='Logout'>
   </form>
-  
-   </div>
-   
-<div  class=flex-row_images>
-           <form >
-  <%
-  for(int i = 0 ; i<list.size() ; i++ ){
-	  %>
-
-        <img 
-           src=" data:image/jpeg;base64,<%= list.get(i).getPhoto()%>"
-           
-            height="160" width="160" />
-            
-          
-            <a>
-            
-             <%=
-             list.get(i).getName()
-             %>
-             
-             </a>
-    
-    <%  
-    } 
-    %>
-      </form>
+  </div>
             </div>
+    
+  <div class='col' >
+    <table   class='subject-form' >
+  <c:forEach items="${Images}" var="item">
+  <div  >
+    <tr>
+      <td><c:out value="${item.getName()}" /></td>
+        <td > <img style="padding: 5px;"
+          src=" data:image/jpeg;base64,${item.getPhoto()}"
+            height="100" width="100" /></td>   
+           <td >  <a href="Result/${item.getId()}">Details</a></td>
+    </tr>
+    </div>
+  </c:forEach>
+</table>
+    </div>
+    
+    </div>
 
  
   

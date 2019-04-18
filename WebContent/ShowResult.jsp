@@ -116,7 +116,7 @@ img
 </table>
 
 <div class="outer">
- <form  action="submitcomment" method="post">
+ <form  action="SubmitComments" method="post">
   <input id="comment" placeholder='write here your comment' type='text' name='comment'>
   <input type="submit" value="Submit">
  </form>

@@ -45,7 +45,7 @@ public class SubmitComments extends HttpServlet {
         
     	String errorMsg = null;
 		if(comment == null || comment.equals("")){
-			errorMsg ="Write your comment first";
+			errorMsg ="Write your comment First";
 		}
 		
         

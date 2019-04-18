@@ -20,6 +20,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
+import com.journaldev.util.Comments;
 import com.journaldev.util.Images;
 import com.journaldev.util.User;
 
@@ -38,14 +39,15 @@ public class ResultServleet extends HttpServlet {
 		    Connection con = (Connection) getServletContext().getAttribute("DBConnection");
 		    HttpSession session = request.getSession();
 
-			ResultSet rs = null;
-
 			try {
 				{
-					Images img  =getImageData(con,id);
+					
 
-			          System.out.println("ResultServleet Link >>>>> "	+img.getId());
-					session.setAttribute("ResultImages",img);
+				Images img  =getImageData(con,id);
+				List<Comments> coment  =getImageComments(con,id);
+			    System.out.println("ResultServleet Link >>>>> "+img.getId());
+				session.setAttribute("ResultImages",img);
+				session.setAttribute("Comments",coment);
 				response.sendRedirect("ShowResult.jsp");
 				
 				}
@@ -56,11 +58,6 @@ public class ResultServleet extends HttpServlet {
 			}
 				
 
-//			out.println("<font color=red>"+id+"</font>");
-//			rd.include(request, response);
-////			
-////
-////		    response.sendRedirect("login.html");
 	}
 
 	 private  Images getImageData(Connection conn, String id) throws SQLException {
@@ -84,6 +81,34 @@ public class ResultServleet extends HttpServlet {
 	      rs.close();
           pstm.close();
 	      return img;
+	      
+	      
+	  }
+	 
+	 
+	 private   List<Comments> getImageComments(Connection conn, String id) throws SQLException {
+		  System.out.println("Download Comments here "	);
+	      String sql = "select id, imageId, userId,comments,userName from Comments  where imageId=?";
+	 
+	      PreparedStatement pstm = conn.prepareStatement(sql);
+	      pstm.setString(1, id);
+	      List<Comments> list = new ArrayList();	
+	      ResultSet rs = pstm.executeQuery();
+	      while (rs != null && rs.next()){
+	    	  
+	          Comments cment = new Comments();
+	
+	          cment.setComments(rs.getString("comments"));
+	          cment.setUserName(rs.getString("userName"));
+	          cment.setId(rs.getInt("id"));
+	          cment.setUserId(rs.getInt("userId"));
+	          cment.setImageId(rs.getInt("imageId"));
+	          list.add(cment);
+	      }
+	      rs.close();
+         pstm.close();
+         System.out.println("Comments Size "+list.size()	);
+	      return list;
 	      
 	      
 	  }

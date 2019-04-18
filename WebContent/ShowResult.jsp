@@ -1,5 +1,6 @@
 <%@page
   import="com.journaldev.util.Images"
+    import="com.journaldev.util.Comments"
   
   %>
 <%@ page language="java" contentType="text/html; charset=US-ASCII"
@@ -85,7 +86,7 @@ img
 
 <div class="outer">
     <div class="inner">
-        <img src="data:image/jpeg;base64,${item.getPhoto()}"  width="200" height="300" alt="Subject Name" />
+        <img src="data:image/jpeg;base64,<%=displayImage.getPhoto() %>"  width="200" height="300" alt="Subject Name" />
     </div>
 </div>
 
@@ -96,7 +97,7 @@ img
    <div id="star2" class="notation-star" onClick="notation(this.id);"></div>
    <div id="star1" class="notation-star" onClick="notation(this.id);"></div>
    <input type="hidden" id="notationNote" name="notation_note" value="0">
-   <input type="submit" value="ok">
+   
    
    </form >
     <br>
@@ -106,14 +107,20 @@ img
 
 
 <table>
-  <c:forEach items="${Images}" var="item">
+  <c:forEach items="${Comments}" var="item">
     <tr>
-      <td><c:out value="${item.getName()}" /></td>
+      <td><c:out value="${item.getUserName()} : ${item.getComments()}" /></td>
  
     </tr>
   </c:forEach>
 </table>
 
+<div class="outer">
+ <form  action="submitcomment" method="post">
+  <input id="comment" placeholder='write here your comment' type='text' name='comment'>
+  <input type="submit" value="Submit">
+ </form>
+</div>
 
 </body>
 </html>

@@ -3,10 +3,7 @@ package com.journaldev.util;
 import java.io.Serializable;
 
 public class Images implements Serializable {
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 8187167802827722344L;
 	private String name;
 	private  String  photo;

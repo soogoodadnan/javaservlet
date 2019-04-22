@@ -317,6 +317,7 @@ padding-right:50px
    </form >
    </div>
    
+<form action="SubmitComments" method="post">
 <div class="flex-row">
 
   <input class='lf--input' id="comment" placeholder='write here your comment' type='text' name='comment'>
@@ -325,10 +326,9 @@ padding-right:50px
 
 <div class="flex-row">
 
-<form action="SubmitComments" method="post">
   <input  class="lf--submit" type="submit" value="Submit">
+  </div>
  </form>
- </div>
  </div>
  </div>
 

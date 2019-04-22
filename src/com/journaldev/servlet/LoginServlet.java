@@ -77,7 +77,7 @@ public class LoginServlet extends HttpServlet {
 			}else{
 				RequestDispatcher rd = getServletContext().getRequestDispatcher("/login.html");
 				PrintWriter out= response.getWriter();
-				logger.error("User not found with email="+email);
+				logger.error("User not found with email ="+email);
 				out.println("<font color=red>No user found with given email id, please register first.</font>");
 				rd.include(request, response);
 			}

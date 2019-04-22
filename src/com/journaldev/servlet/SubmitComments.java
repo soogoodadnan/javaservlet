@@ -35,8 +35,9 @@ public class SubmitComments extends HttpServlet {
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
         // gets values of text fields
-
-		RequestDispatcher rd = getServletContext().getRequestDispatcher("/ShowResult.jsp");
+    	Images displayImage;
+		HttpSession session = request.getSession();
+		RequestDispatcher rd = getServletContext().getRequestDispatcher("/Result");
 		PrintWriter out= response.getWriter();
 		
     	  String message = "";
@@ -56,10 +57,9 @@ public class SubmitComments extends HttpServlet {
 			rd.include(request, response);
     
 	}else{
-		
-		HttpSession session = request.getSession();
+
 		User user = (User) 	session.getAttribute("User");
-		Images displayImage = (Images) 	session.getAttribute("ResultImages");
+		 displayImage = (Images) 	session.getAttribute("ResultImages");
     
 		Connection con = (Connection) getServletContext().getAttribute("DBConnection");
 		PreparedStatement ps = null;
@@ -75,7 +75,7 @@ public class SubmitComments extends HttpServlet {
             int row = ps.executeUpdate();
           
             if (row > 0) {
-                message = "Comment saved into database";
+//                message = "Comment saved into database";
             }
             
         } catch (SQLException ex) {
@@ -90,8 +90,10 @@ public class SubmitComments extends HttpServlet {
                     ex.printStackTrace();
                 }
             }
+        
+            session.setAttribute("id",    String.valueOf(displayImage.getId()));
             out.println("<font color=green>"+message+"</font>");
-            rd.include(request, response);
+            rd.forward(request, response);
         
         }
     }

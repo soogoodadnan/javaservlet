@@ -34,15 +34,20 @@ public class ResultServleet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 PrintWriter out = response.getWriter();
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/home.jsp");
-		    String id = request.getParameter("imageButton");
+			  HttpSession session = request.getSession();
+		    String id =request.getParameter("imageButton");
+		    
+		    if(id== null || id.equals("")) {
+		    	id = (String) session.getAttribute("id");
+		    	
+		    }
+		   
+		    
 		    logger.info("ResultServlet= "+id);
 		    Connection con = (Connection) getServletContext().getAttribute("DBConnection");
-		    HttpSession session = request.getSession();
-
+		  
 			try {
-				{
-					
-
+			
 				Images img  =getImageData(con,id);
 				List<Comments> coment  =getImageComments(con,id);
 			    System.out.println("ResultServleet Link >>>>> "+img.getId());
@@ -50,14 +55,13 @@ public class ResultServleet extends HttpServlet {
 				session.setAttribute("Comments",coment);
 				response.sendRedirect("ShowResult.jsp");
 				
-				}
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 				logger.error("Database connection problem");
 				throw new ServletException("DB Connection problem.");
 			}
 				
-
 	}
 
 	 private  Images getImageData(Connection conn, String id) throws SQLException {
@@ -108,8 +112,12 @@ public class ResultServleet extends HttpServlet {
 	      rs.close();
          pstm.close();
          System.out.println("Comments Size "+list.size()	);
+         logger.error("Comments Size "+list.size());
 	      return list;
 	      
 	      
 	  }
+
+	 
+	 
 }

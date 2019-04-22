@@ -74,14 +74,6 @@ img
     margin: auto auto;
 }
 
-
-
-
-
-
-
-
-
     
     * {
   -webkit-font-smoothing: antialiased;
@@ -284,17 +276,16 @@ body:before {
 
 .col {
   
-    margin-left: 200px;
+    margin-left: 100px;
  overflow: auto;
 max-height: 80%;
 padding-right:50px
 }
 
 .colTop {
-    margin-left: 200px;
- overflow: auto;
 max-height: 80%;
 padding-right:50px
+ 
   
 }
 
@@ -311,7 +302,7 @@ padding-right:50px
     <div class='row' >
     
   <div class='colTop' >
-  <div>
+  <div class='subject-form'>
  <img src="data:image/jpeg;base64,<%=displayImage.getPhoto() %>"  width="260" height="330" alt="Subject Name" />
  
  <div class="flex-row">

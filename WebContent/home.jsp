@@ -250,9 +250,18 @@ padding-right:50px
   <div class="flex-row">
 <strong>Your Country</strong>: <%=user.getCountry() %><br>
   </div>
+  <%
+  if(user.getRole() ==  1){
+  %>
+  
+  
   <form >
   <input class='lf--submit' type='submit' value='Upload Subject' formaction="Upload.jsp"  name='UploadSubject'>
  </form>
+  <%
+  }
+ %>
+ 
     <form action="Logout"  method="post">
   <input class='lf--submitTWO' type='submit' value='Logout'   name='Logout'>
   </form>

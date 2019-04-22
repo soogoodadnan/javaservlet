@@ -9,13 +9,15 @@ public class User implements Serializable{
 	private String name;
 	private String email;
 	private int id;
+	private int role;
 	private String country;
 	
-	public User(String nm, String em, String country, int i){
-		this.name=nm;
-		this.id=i;
+	public User(int id, String name, String email, String country,int role){
+		this.name=name;
+		this.id=id;
+		this.role = role;
 		this.country=country;
-		this.email=em;
+		this.email=email;
 	}
 
 	public void setName(String name) {
@@ -57,5 +59,13 @@ public class User implements Serializable{
 	@Override
 	public String toString(){
 		return "Name="+this.name+", Email="+this.email+", Country="+this.country;
+	}
+
+	public int getRole() {
+		return role;
+	}
+
+	public void setRole(int role) {
+		this.role = role;
 	}
 }

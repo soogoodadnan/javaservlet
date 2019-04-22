@@ -305,7 +305,7 @@ padding-right:50px
   <div class='subject-form'>
  <img src="data:image/jpeg;base64,<%=displayImage.getPhoto() %>"  width="260" height="330" alt="Subject Name" />
  
- <div class="flex-row">
+ <div class="lf--input">
 <form method="post" action="voting">
    <div id="star5" class="notation-star" onClick="notation(this.id);"></div>
    <div id="star4" class="notation-star" onClick="notation(this.id);"></div>

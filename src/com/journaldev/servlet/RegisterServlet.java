@@ -55,7 +55,7 @@ public class RegisterServlet extends HttpServlet {
 			ps.setString(2, email);
 			ps.setString(3, country);
 			ps.setString(4, password);
-			
+	
 			ps.execute();
 			
 			logger.info("User registered with email="+email);

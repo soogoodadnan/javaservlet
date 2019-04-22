@@ -216,21 +216,16 @@ body:before {
 }
 
 .col {
-  flex: 1; /* additionally, equal width */
   
-  padding: 1em;
+    margin-left: 200px;
  overflow: auto;
-max-height: 100vh;
-  padding: 1em;
-  border: solid;
+max-height: 80%;
+padding-right:50px
 }
 
 .colTop {
   flex: 1; /* additionally, equal width */
   
-  padding: 1em;
-    padding: 1em;
-  border: solid;
 }
 
     </style>
@@ -269,17 +264,17 @@ max-height: 100vh;
   <c:forEach items="${Images}" var="item">
 
     <tr>
-      <td><c:out value="${item.getName()}" /></td>
-        <td > <img style="padding: 5px;"
+      <td><h3  style="padding-left: 50px; padding-right: 50px;">${item.getName()} </h3></td>
+        <td > <img style="padding-left: 50px; padding-right: 50px;"
           src=" data:image/jpeg;base64,${item.getPhoto()}"
-            height="160" width="260" /></td>   
+            height="260" width="330" /></td>   
            
            <td >
              <form action="Result"  method="post">
     <input type="hidden" name="imageButton"  value='${item.getId()}'>
   
                
-    <input class='lf--submitTWO'  name='Details' type='submit' value='Details'>
+    <input class='lf--submitTWO' style="padding-left: 50px; padding-right: 50px; margin-bottom:50px; "   name='Details' type='submit' value='Details'>
     </form>
     
     </td>

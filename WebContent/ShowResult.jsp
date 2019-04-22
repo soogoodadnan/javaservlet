@@ -157,9 +157,9 @@ body:before {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-bottom: 1em;
+  margin-bottom: 0em;
   
-    margin-top: 50px;
+    margin-top: 16px;
 }
 
 .flex-row_images {
@@ -291,7 +291,10 @@ padding-right:50px
 }
 
 .colTop {
-  flex: 1; /* additionally, equal width */
+    margin-left: 200px;
+ overflow: auto;
+max-height: 80%;
+padding-right:50px
   
 }
 
@@ -304,10 +307,11 @@ padding-right:50px
 
 <%Images displayImage = (Images) session.getAttribute("ResultImages");
 %>
-<h1 class="flex-row">>> <%=displayImage.getName() %> <<</h1>
+<h1 class="flex-row"> <%=displayImage.getName() %> </h1>
     <div class='row' >
     
   <div class='colTop' >
+  <div>
  <img src="data:image/jpeg;base64,<%=displayImage.getPhoto() %>"  width="260" height="330" alt="Subject Name" />
  
  <div class="flex-row">
@@ -334,7 +338,7 @@ padding-right:50px
   <input  class="lf--submit" type="submit" value="Submit">
  </form>
  </div>
- 
+ </div>
  </div>
 
 

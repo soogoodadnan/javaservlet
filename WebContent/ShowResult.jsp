@@ -306,13 +306,40 @@ padding-right:50px
  <img src="data:image/jpeg;base64,<%=displayImage.getPhoto() %>"  width="260" height="330" alt="Subject Name" />
  
  <div class="lf--input">
-<form method="post" action="voting">
-   <div id="star5" class="notation-star" onClick="notation(this.id);"></div>
-   <div id="star4" class="notation-star" onClick="notation(this.id);"></div>
-   <div id="star3" class="notation-star" onClick="notation(this.id);"></div>
-   <div id="star2" class="notation-star" onClick="notation(this.id);"></div>
-   <div id="star1" class="notation-star" onClick="notation(this.id);"></div>
-   <input type="hidden" id="notationNote" name="notation_note" value="0">
+ 
+<form method="post" action="SubjectRaiting" id ="ratingForm">
+
+
+   <div id="5" class="notation-star" onClick="handleClick(this.id);"></div>
+   <div id="4" class="notation-star" onClick="handleClick(this.id);"></div>
+   <div id="3" class="notation-star" onClick="handleClick(this.id);"></div>
+   <div id="2" class="notation-star" onClick="handleClick(this.id);"></div>
+   <div id="1" class="notation-star" onClick="handleClick(this.id);"></div>
+   <input type="hidden" id="notationNote" name="tableTextId" value="0">
+   
+   
+  <input  class="lf--submit" type="submit" value="ok">
+  
+  <!-- 
+     <input id="star1"  type="radio" name="notation_note" value="1" class=notation-star>
+            <input id="star2" type="radio" name="notation_note" value="2" class="notation-star">
+            <input id="star3" type="radio" name="notation_note" value="3" class="notation-star">
+            <input  id="star4" type="radio" name="notation_note" value="4" class="notation-star">
+            <input id="star5" type="radio" name="notation_note" value="5" class="notation-star"> -->
+            
+<script type="text/javascript">
+  function handleClick(clickedId)
+  {
+	  console.log(clickedId);
+    /*  if(clickedId == "customerId") */
+       document.getElementById('notationNote').value = clickedId;
+  /*    else
+       document.getElementById('tableTextId').value = "company"; */
+       document.getElementById('ratingForm').submit();
+  }
+</script>
+   
+
   
    </form >
    </div>

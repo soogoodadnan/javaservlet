@@ -10,6 +10,8 @@ public class Comments implements Serializable {
 	private int id;
 	private int imageId;
 	private int userId;
+	private int raiting;
+	
 	
 	public String getUserName() {
 		return userName;
@@ -23,13 +25,14 @@ public class Comments implements Serializable {
 	
 	
 
-	public Comments(String comments, String userName, int id, int imageId, int userId) {
+	public Comments(String comments, String userName, int id, int imageId, int userId,int raiting) {
 		super();
 		this.comments = comments;
 		this.userName = userName;
 		this.id = id;
 		this.imageId = imageId;
 		this.userId = userId;
+		this.raiting = raiting;
 	}
 
 	public String getComments() {
@@ -55,6 +58,14 @@ public class Comments implements Serializable {
 	}
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+
+	public int getRaiting() {
+		return raiting;
+	}
+
+	public void setRaiting(int raiting) {
+		this.raiting = raiting;
 	}
 
 	

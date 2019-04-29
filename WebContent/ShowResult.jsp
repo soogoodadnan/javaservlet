@@ -309,32 +309,18 @@ padding-right:50px
  
 <form method="post" action="SubjectRaiting" id ="ratingForm">
 
-
    <div id="5" class="notation-star" onClick="handleClick(this.id);"></div>
    <div id="4" class="notation-star" onClick="handleClick(this.id);"></div>
    <div id="3" class="notation-star" onClick="handleClick(this.id);"></div>
    <div id="2" class="notation-star" onClick="handleClick(this.id);"></div>
    <div id="1" class="notation-star" onClick="handleClick(this.id);"></div>
-   <input type="hidden" id="notationNote" name="tableTextId" value="0">
-   
-   
-  <input  class="lf--submit" type="submit" value="ok">
-  
-  <!-- 
-     <input id="star1"  type="radio" name="notation_note" value="1" class=notation-star>
-            <input id="star2" type="radio" name="notation_note" value="2" class="notation-star">
-            <input id="star3" type="radio" name="notation_note" value="3" class="notation-star">
-            <input  id="star4" type="radio" name="notation_note" value="4" class="notation-star">
-            <input id="star5" type="radio" name="notation_note" value="5" class="notation-star"> -->
+   <input type="text" id="notationNote" name="tableTextId" value="0">
             
 <script type="text/javascript">
   function handleClick(clickedId)
   {
 	  console.log(clickedId);
-    /*  if(clickedId == "customerId") */
        document.getElementById('notationNote').value = clickedId;
-  /*    else
-       document.getElementById('tableTextId').value = "company"; */
        document.getElementById('ratingForm').submit();
   }
 </script>
@@ -365,7 +351,7 @@ padding-right:50px
 <table  class="subject-form">
   <c:forEach items="${Comments}" var="item">
     <tr>
-      <td><c:out value="${item.getUserName()} : ${item.getComments()}" /></td>
+      <td><c:out value="${item.getUserName() }  (${item.getRaiting()} ) : ${item.getComments()}" /></td>
  
     </tr>
   </c:forEach>

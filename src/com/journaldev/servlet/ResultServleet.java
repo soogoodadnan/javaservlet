@@ -92,7 +92,7 @@ public class ResultServleet extends HttpServlet {
 	 
 	 private   List<Comments> getImageComments(Connection conn, String id) throws SQLException {
 		  System.out.println("Download Comments here "	);
-	      String sql = "select id, imageId, userId,comments,userName from Comments  where imageId=?";
+	      String sql = "select id, imageId, userId,comments,userName,raiting from Comments  where imageId=?";
 	 
 	      PreparedStatement pstm = conn.prepareStatement(sql);
 	      pstm.setString(1, id);
@@ -107,6 +107,7 @@ public class ResultServleet extends HttpServlet {
 	          cment.setId(rs.getInt("id"));
 	          cment.setUserId(rs.getInt("userId"));
 	          cment.setImageId(rs.getInt("imageId"));
+	          cment.setRaiting(rs.getInt("raiting"));
 	          list.add(cment);
 	      }
 	      rs.close();

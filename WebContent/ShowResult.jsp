@@ -33,7 +33,7 @@ width: inherit;
 
 .notation-star {
 background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Empty_Star.svg/2000px-Empty_Star.svg.png");
-background-repeat: no-repeat;
+
 cursor: pointer;
 display: table-cell;
 float: right;
@@ -51,7 +51,7 @@ background-image: url("http://findicons.com/files/icons/1035/human_o2/128/bookma
 
 .notation-star-selected {
 background-image: url("../images/etoile_jaune.png");
-background-repeat: no-repeat;
+
 cursor: pointer;
 display: table-cell;
 float: right;
@@ -305,32 +305,31 @@ padding-right:50px
   <div class='subject-form'>
  <img src="data:image/jpeg;base64,<%=displayImage.getPhoto() %>"  width="260" height="330" alt="Subject Name" />
  
+<form action="SubmitComments" method="post">
  <div class="lf--input">
  
-<form method="post" action="SubjectRaiting" id ="ratingForm">
 
    <div id="5" class="notation-star" onClick="handleClick(this.id);"></div>
    <div id="4" class="notation-star" onClick="handleClick(this.id);"></div>
    <div id="3" class="notation-star" onClick="handleClick(this.id);"></div>
    <div id="2" class="notation-star" onClick="handleClick(this.id);"></div>
    <div id="1" class="notation-star" onClick="handleClick(this.id);"></div>
-   <input type="text" id="notationNote" name="tableTextId" value="0">
+   <input type="hidden" id="notationNote" name="tableTextId" value="0">
+  
             
 <script type="text/javascript">
   function handleClick(clickedId)
   {
 	  console.log(clickedId);
        document.getElementById('notationNote').value = clickedId;
-       document.getElementById('ratingForm').submit();
+
   }
 </script>
    
 
   
-   </form >
    </div>
    
-<form action="SubmitComments" method="post">
 <div class="flex-row">
 
   <input class='lf--input' id="comment" placeholder='write here your comment' type='text' name='comment'>
@@ -351,9 +350,12 @@ padding-right:50px
 <table  class="subject-form">
   <c:forEach items="${Comments}" var="item">
     <tr>
-      <td><c:out value="${item.getUserName() }  (${item.getRaiting()} ) : ${item.getComments()}" /></td>
- 
+    
+      <td><c:out value="${item.getUserName() } (${item.getRaiting()})  " /></td>
     </tr>
+      <tr>
+     <td><c:out value=" ${item.getComments()}" /></td>
+      </tr>
   </c:forEach>
 </table>
 </div>

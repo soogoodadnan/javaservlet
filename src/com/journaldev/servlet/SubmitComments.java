@@ -42,6 +42,7 @@ public class SubmitComments extends HttpServlet {
 		
     	  String message = "";
         String comment = request.getParameter("comment");
+        String raiting = request.getParameter("tableTextId");
     
         
     	String errorMsg = null;
@@ -66,11 +67,14 @@ public class SubmitComments extends HttpServlet {
          
         try {
 
-        	ps = con.prepareStatement("insert into Comments(imageId, userId,userName,comments) values (?,?,?,?)");
+        	ps = con.prepareStatement("insert into Comments(imageId, userId,userName,comments,raiting) values (?,?,?,?,?)");
 			ps.setInt(1, displayImage.getId());
 			ps.setInt(2, user.getId());
 			ps.setString(3, user.getName());
 			ps.setString(4, comment);
+			ps.setInt(5, Integer.parseInt(raiting));
+				
+			
             // sends the statement to the database server
             int row = ps.executeUpdate();
           

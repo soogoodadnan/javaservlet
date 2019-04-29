@@ -60,8 +60,16 @@ public class Comments implements Serializable {
 		this.userId = userId;
 	}
 
-	public int getRaiting() {
-		return raiting;
+	public String getRaiting() {
+		
+		String totalRait = "";
+		for(int i = 0; i<raiting;i++) {
+			
+			totalRait += " * ";
+		}
+	
+	
+		return totalRait;
 	}
 
 	public void setRaiting(int raiting) {

@@ -182,6 +182,7 @@ body:before {
       -ms-flex: 1;
           flex: 1;
   padding: 1em;
+      background: gainsboro;
   border: 0;
   color: #8f8f8f;
   font-size: 1rem;
@@ -204,6 +205,7 @@ body:before {
   background: linear-gradient(to right, #35c3c1, #00d6b7);
   border: 0;
   color: #fff;
+  
   cursor: pointer;
   font-size: .75em;
   font-weight: 600;
@@ -290,6 +292,75 @@ padding-right:50px
 }
 
 
+#main {
+
+  display: flex;
+}
+
+#main div {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 40px;
+}
+
+
+
+
+
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.left {
+  left: 0;
+  background-color: white;
+}
+
+.right {
+  right: 0;
+  background-color: white;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  
+}
+
+.centeredTwo {
+    position: absolute;
+       margin: 50px; 
+  /*   top: 50%;
+    left: 50%; */
+    overflow: auto;
+    /* padding-top: 23%; */
+   /*  transform: translate(-50%, -50%); */
+    /*  text-align: center;*/
+    /* width: 250px; */
+/*     height: 70%; */
+}
+
+
+
+.centered img {
+  width: 260px;
+}
+
+
+
+
+
+
+
 
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -301,27 +372,31 @@ padding-right:50px
 <h1 class="flex-row"> <%=displayImage.getName() %> </h1>
     <div class='row' >
     
-  <div class='colTop' >
-  <div class='subject-form'>
+  <div  class="split left" >
+  <div  class="centered">
  <img src="data:image/jpeg;base64,<%=displayImage.getPhoto() %>"  width="260" height="330" alt="Subject Name" />
  
 <form action="SubmitComments" method="post">
- <div class="lf--input">
- 
 
+
+
+  <div class="main">
+
+ <div c class="background-color:lightblue">
    <div id="5" class="notation-star" onClick="handleClick(this.id);"></div>
    <div id="4" class="notation-star" onClick="handleClick(this.id);"></div>
    <div id="3" class="notation-star" onClick="handleClick(this.id);"></div>
    <div id="2" class="notation-star" onClick="handleClick(this.id);"></div>
    <div id="1" class="notation-star" onClick="handleClick(this.id);"></div>
-   <input type="hidden" id="notationNote" name="tableTextId" value="0">
-  
-            
+   <input type="hidden" id="notationNote" name="tableTextId" value="1">
+  <p id="preview"  class="background-color:lightblue">Raiting </p>
+       </div>     
 <script type="text/javascript">
   function handleClick(clickedId)
   {
 	  console.log(clickedId);
        document.getElementById('notationNote').value = clickedId;
+       document.getElementById('preview').innerHTML = clickedId;
 
   }
 </script>
@@ -345,16 +420,17 @@ padding-right:50px
  </div>
 
 
-<div  class= "col" >
-<div >
-<table  class="subject-form">
+<div   class="split right" >
+<div class="centeredTwo" >
+<table  >
   <c:forEach items="${Comments}" var="item">
     <tr>
-    
-      <td><c:out value="${item.getUserName() } (${item.getRaiting()})  " /></td>
+   
+      <td style="float: left;font-weight: bold;font-size: large;color: lightcoral;
+    margin-top: 24px;"><c:out value="${item.getUserName() } (${item.getRaiting()})  " /></td>
     </tr>
       <tr>
-     <td><c:out value=" ${item.getComments()}" /></td>
+     <td style="font-size: 36px;"><c:out value=" ${item.getComments()}" /></td>
       </tr>
   </c:forEach>
 </table>

@@ -97,6 +97,7 @@ public class SubmitComments extends HttpServlet {
         
             session.setAttribute("id",    String.valueOf(displayImage.getId()));
             out.println("<font color=green>"+message+"</font>");
+         
             rd.forward(request, response);
         
         }

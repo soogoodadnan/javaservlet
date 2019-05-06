@@ -72,7 +72,7 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("User", user);
 				session.setAttribute("Images", list);
 
-				response.sendRedirect("home.jsp");;
+				response.sendRedirect("home.jsp");
 				
 			}else{
 				RequestDispatcher rd = getServletContext().getRequestDispatcher("/login.html");
